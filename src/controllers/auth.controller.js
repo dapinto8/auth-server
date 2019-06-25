@@ -33,7 +33,7 @@ authController.signIn = async (req, res) => {
     if (!user) {
         return res.status(500).json({
             code: 500,
-            error: `Invalid email or password`
+            message: `Invalid email or password`
         })
     }
 
@@ -43,9 +43,11 @@ authController.signIn = async (req, res) => {
         code: 200,
         data: {
             token, 
-            id: user._id,
-            name: user.name,
-            email: user.email
+            user: {
+                id: user._id,
+                name: user.name,
+                email: user.email
+            }
         }
     })
 }
